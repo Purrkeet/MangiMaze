@@ -1,0 +1,49 @@
+﻿Build started 02/07/2015 14:07:35.
+     1>Project "C:\Users\User\Desktop\MangiMaze Versiones\Mangimaze4.4\Mangimaze4.3\SFML_TEST\SFML_TEST.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.2\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt game.cpp
+         game.cpp
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(45): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(46): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(62): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(82): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(115): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\bala.h(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(559): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(565): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(632): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(717): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(780): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(837): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(854): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(872): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(933): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(954): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(969): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(992): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1013): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1018): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1029): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1464): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1466): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1468): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1474): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1564): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(1659): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\game.cpp(10): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\utility(157): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+                 c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(70) : see reference to function template instantiation 'std::pair<int,int>::pair<float,float,void>(std::pair<float,float> &&)' being compiled
+                 c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\enemigo.h(70) : see reference to function template instantiation 'std::pair<int,int>::pair<float,float,void>(std::pair<float,float> &&)' being compiled
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(267): warning C4715: 'juego::BuscarEntrada' : not all control paths return a value
+     1>c:\users\user\desktop\mangimaze versiones\mangimaze4.4\mangimaze4.3\sfml_test\juego.h(257): warning C4715: 'juego::BuscarSalida' : not all control paths return a value
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Desktop\MangiMaze Versiones\Mangimaze4.4\Mangimaze4.3\Debug\SFML_TEST.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.2\lib" "sfml-audio-d.lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Desktop\MangiMaze Versiones\Mangimaze4.4\Mangimaze4.3\Debug\SFML_TEST.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Desktop\MangiMaze Versiones\Mangimaze4.4\Mangimaze4.3\Debug\SFML_TEST.lib" /MACHINE:X86 Debug\Enemigo.obj
+         Debug\game.obj
+         Debug\juego.obj
+         Debug\VecEnemigos.obj
+         SFML_TEST.vcxproj -> C:\Users\User\Desktop\MangiMaze Versiones\Mangimaze4.4\Mangimaze4.3\Debug\SFML_TEST.exe
+     1>Done Building Project "C:\Users\User\Desktop\MangiMaze Versiones\Mangimaze4.4\Mangimaze4.3\SFML_TEST\SFML_TEST.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.72
