@@ -2,10 +2,10 @@
 #include "Enemigo.h"
 #include "Bala.h"
 using namespace std;
+/** Se comentaron porque estan definidos ya en 'Enemigo.h' y desde ahi se incluyen.
 
 //typedef vector<int> vi;
 //typedef vector<vi> vvi;
-typedef vector<Enemigo> vE;
 //typedef vector<bool> vb;
 //typedef pair<int, int> ii;
 //typedef pair<int, ii> iii;
@@ -18,7 +18,6 @@ typedef vector<Enemigo> vE;
 //typedef stack<iic> siic;
 //typedef vector<iii> viii;
 //typedef priority_queue < iii, viii, greater<iii> > pq;
-/*
 #define MAXMATRIX 77
 #define INF 99999
 
@@ -27,66 +26,76 @@ typedef vector<Enemigo> vE;
 #define offset 1
 #define offsetC 50
 #define anchoBloque 20
-*/
+**/
+typedef vector<Enemigo> vE;
 class juego
 {
 private:
-	int filM, colM; // seria filM y colM
-	char maze[MAXMATRIX][MAXMATRIX];
-	int fil, col;
-	vb visitado;
-	//
-	vii puertasEnemigos;
-	vE Venemigos;
-	//
-	int matPadres[MAXMATRIX][MAXMATRIX];
-	int matVisitados[MAXMATRIX][MAXMATRIX];
-	int JugadorX, JugadorY;
-	int direccionBala;
-	char color;
+	int filM, colM; //tamaño que incluye los bordes del laberinto 
+	int fil, col; //tamaño sin bordes
+		
+	// El tiempo Global desde que inicio el juego
+	float TiempoG;	
 	float conEnemigosT;
-	vi portalesActivos;
-	static const float		PlayerSpeed;
+	sf::RenderWindow *mWindow;
 	static const sf::Time	TimePerFrame;
 
+	int contador; //contador de que?? CESAR o STEVE, quien fue?
+
+	//Deberian de estar en 'Mapa.h' ?
+	int mapaRandom;
 	sf::Image iStuffMapa;
 	sf::Texture tStuffmapa;
-
-	int contador;
-	sf::Image iHero;
-	sf::Texture tHero;
-	vector<sf::IntRect> vHeroAdelante;
-	vector<sf::IntRect> vHeroAtras;
-	vector<sf::IntRect> vHeroDerecha;
-	vector<sf::IntRect> vHeroIzquierda;
+	vb visitado;
+	vii puertasEnemigos;
 	vector<sf::RectangleShape> vecMunicion;
-	sf::RenderWindow *mWindow;
-	 
-	int mapaRandom;
 	vector<sf::RectangleShape> vecr;
-	vector <Enemigo> enemigos;
 	vector <sf::CircleShape> puertas;
-
-	vector<sf::RectangleShape> vecrSol;
-	vector<sf::CircleShape> vecPort;
-	sf::CircleShape Jugador;
 	vii posPortales;
-	CBala *bala;
-	bool	mIsMovingUp;
-	bool	mIsMovingDown;
-	bool	mIsMovingRight;
-	bool	mIsMovingLeft;
+	vector<sf::CircleShape> vecPort;
+	vi portalesActivos;
+	//El laberinto en Caracteres ASCII
+		char maze[MAXMATRIX][MAXMATRIX];
+	//Recorrido del DFS
+		int matPadres[MAXMATRIX][MAXMATRIX];
+	//Como regresar usando 'matPadres[][]'
+		int matVisitados[MAXMATRIX][MAXMATRIX];
 
-	//cambios Steve lunes 26-06
+	//Dos vectores de Enemigos??? --Cesar: Revisa
+	vE enemigos;
+	vE Venemigos;
+
+	//Propiedades para saber hacia donde esta moviendose el personaje
+	//Deben de moverse a una clase llamada 'Jugador.h' 
+		bool	mIsMovingUp;
+		bool	mIsMovingDown;
+		bool	mIsMovingRight;
+		bool	mIsMovingLeft;
+	//Otras propiedades de 'Jugador.h'
+		int JugadorX, JugadorY;
+		static const float		PlayerSpeed;
+		char color;
+		sf::Image iHero;
+		sf::Texture tHero;
+		vector<sf::IntRect> vHeroAdelante;
+		vector<sf::IntRect> vHeroAtras;
+		vector<sf::IntRect> vHeroDerecha;
+		vector<sf::IntRect> vHeroIzquierda;
+		CBala *bala;
+		sf::CircleShape Jugador;
+		//Cuando el jugador activa el Visor
+		vector<sf::RectangleShape> vecrSol;
+	
+	//Puntos de referencia para la bala? -Debería estar en Bala.h --Revisar: Steve
 	int ColiBalaX;
 	int ColiBalaY;
+	int direccionBala;
 
-	//DAMBERT
+	//Propiedades de la partida actual -> debería estar en 'Partida.h'
 	int CANTIDADBALAS;
 	int NIVEL;
 	int PUNTAJE_ACUMULADO;
-	//ERIK
-	float TiempoG;
+	
 
 public:
 	juego() ://mWindow(sf::VideoMode(900, 700), "Mangimaze", sf::Style::Close), 

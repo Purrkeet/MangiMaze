@@ -3,7 +3,7 @@
 #include "juego.h"
 
 using namespace std;
-using namespace sf;
+
 
 int main()
 {
