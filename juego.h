@@ -1,8 +1,9 @@
 #pragma once
 #include "Enemigo.h"
 #include "Bala.h"
-#include "SFML\Audio.hpp"
+#include <SFML/Audio.hpp>
 using namespace std;
+using namespace sf;
 /** Se comentaron porque estan definidos ya en 'Enemigo.h' y desde ahi se incluyen.
 
 //typedef vector<int> vi;
@@ -60,7 +61,7 @@ private:
 	vector<sf::CircleShape> vecPort;
 	vi portalesActivos;
 	//Musica y Sonido
-		sf::Music musicaLaberinto;
+		sf::Music *musicaLaberinto;
 		//sonidos que hace el jugador
 		enum SonidosJugador
 		{
@@ -213,6 +214,8 @@ public:
 		PUNTAJE_ACUMULADO = 0;
 		//ERIK
 		TiempoG = 0.f;
+                //Musica como puntero
+                musicaLaberinto = new sf::Music();
 		//Sonidos del jugador
 		
 
@@ -1856,11 +1859,11 @@ public:
 	{
 		sf::Clock clock;
 		sf::Time timeSinceLastUpdate = sf::Time::Zero;
-		if (!musicaLaberinto.openFromFile("sounds/Music- Battle_Music-Trainer.ogg"))
+		if (!musicaLaberinto->openFromFile("sounds/Music- Battle_Music-Trainer.ogg"))
 			cout << endl << "No se pudo leer el archivo de musica!" << endl;
-		musicaLaberinto.setLoop(true);
-		musicaLaberinto.setVolume(25); //por defecto empieza con 100 (max)
-		musicaLaberinto.play();
+		musicaLaberinto->setLoop(true);
+		musicaLaberinto->setVolume(25); //por defecto empieza con 100 (max)
+		musicaLaberinto->play();
 		while (mWindow->isOpen())
 		{
 			/*sf::Time elapsedTime = clock.restart();
