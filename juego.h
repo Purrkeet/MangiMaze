@@ -1,6 +1,7 @@
 #pragma once
 #include "Enemigo.h"
 #include "Bala.h"
+#include "SFML\Audio.hpp"
 using namespace std;
 /** Se comentaron porque estan definidos ya en 'Enemigo.h' y desde ahi se incluyen.
 
@@ -28,8 +29,12 @@ using namespace std;
 #define anchoBloque 20
 **/
 typedef vector<Enemigo> vE;
+typedef vector<sf::SoundBuffer> vSBf;
+typedef vector<std::string> vStr;
+#define CantidadSonidosJugador 9
 class juego
-{
+{	
+
 private:
 	int filM, colM; //tamaño que incluye los bordes del laberinto 
 	int fil, col; //tamaño sin bordes
@@ -54,6 +59,19 @@ private:
 	vii posPortales;
 	vector<sf::CircleShape> vecPort;
 	vi portalesActivos;
+	//Musica y Sonido
+		sf::Music musicaLaberinto;
+		//sonidos que hace el jugador
+		enum SonidosJugador
+		{
+			PasarxPortal, UsarVisor, CogerItem, AtravesarSalida, CambiarColor, ChocaPared, ColisionaEnemigo, LanzarPkbl, Pisadas
+		};
+		//vector SoundBuffers
+		vSBf BsonidosJugador;
+		std::string sonJugador_nombres[CantidadSonidosJugador];
+		sf::Sound SonidoJugador;
+		
+
 	//El laberinto en Caracteres ASCII
 		char maze[MAXMATRIX][MAXMATRIX];
 	//Recorrido del DFS
@@ -85,6 +103,7 @@ private:
 		sf::CircleShape Jugador;
 		//Cuando el jugador activa el Visor
 		vector<sf::RectangleShape> vecrSol;
+		
 	
 	//Puntos de referencia para la bala? -Debería estar en Bala.h --Revisar: Steve
 	int ColiBalaX;
@@ -194,6 +213,23 @@ public:
 		PUNTAJE_ACUMULADO = 0;
 		//ERIK
 		TiempoG = 0.f;
+		//Sonidos del jugador
+		
+
+			string sonJugador_nombresTemp[CantidadSonidosJugador] = {"sounds/ruby_000A_transPortal.wav", "sounds/ruby_003B_Visor.wav",
+				"sounds/ruby_005F_cogiendoItem.wav", "sounds/ruby_0006_pasandoSalida.wav", "sounds/ruby_006C_cambioColor.wav"
+				, "sounds/ruby_0007_chocandoPared.wav", "sounds/ruby_0008_colisConEnemigo.wav",
+				"sounds/ruby_0022_lanzamientoPkBl.wav", "sounds/ruby_0074_pisada.wav"
+			};
+			//copiar al string miembro son(idos del)Jugador_nombres
+			std::copy(sonJugador_nombresTemp, sonJugador_nombresTemp + CantidadSonidosJugador, sonJugador_nombres);
+			//almacenar en memoria los sonidos
+			BsonidosJugador = vSBf(CantidadSonidosJugador);
+			for (int i = 0; i < CantidadSonidosJugador; i++)
+			{
+				BsonidosJugador[i].loadFromFile(sonJugador_nombres[i]);
+			}
+		//--Fin sonidos del jugador	
 	}
 	~juego(){}
 
@@ -1584,11 +1620,36 @@ public:
 						if (i != -1){ vecMunicion.erase(vecMunicion.begin() + i); CANTIDADBALAS++;}
 						if (colisionPortal(Jugador)){
 							teletransportar(posPortales, Jugador);
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::PasarxPortal]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::Pisadas]){
+								SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::Pisadas]);
+								SonidoJugador.play();
+							}
+							else{
+								if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+									SonidoJugador.play();
+								}
+							}							
+							
 						}
 						continue;
 					}
 					else
+					{
+						if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::ChocaPared]){
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::ChocaPared]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+								SonidoJugador.play();
+							}
+						}
 						Jugador.move(0, +1);
+					}
 				}
 				if (event.key.code == sf::Keyboard::S){
 					Jugador.move(0, +1);
@@ -1601,11 +1662,37 @@ public:
 						if (i != -1){ vecMunicion.erase(vecMunicion.begin() + i); CANTIDADBALAS++; }
 						if (colisionPortal(Jugador)){
 							teletransportar(posPortales, Jugador);
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::PasarxPortal]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::Pisadas]){
+								SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::Pisadas]);
+								SonidoJugador.play();
+							}
+							else{
+								if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+									SonidoJugador.play();
+								}
+							}
+							
 						}
 						continue;
 					}
 					else
+					{
+						if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::ChocaPared]){
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::ChocaPared]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+								SonidoJugador.play();
+							}
+						}
+						
 						Jugador.move(0, -1);
+					}
 				}
 				if (event.key.code == sf::Keyboard::A){
 					Jugador.move(-1, 0);
@@ -1618,11 +1705,36 @@ public:
 						if (i != -1){ vecMunicion.erase(vecMunicion.begin() + i); CANTIDADBALAS++; }
 						if (colisionPortal(Jugador)){
 							teletransportar(posPortales, Jugador);
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::PasarxPortal]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::Pisadas]){
+								SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::Pisadas]);
+								SonidoJugador.play();
+							}
+							else{
+								if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+									SonidoJugador.play();
+								}
+							}
+							
 						}
 						continue;
 					}
 					else
+					{
+						if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::ChocaPared]){
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::ChocaPared]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+								SonidoJugador.play();
+							}
+						}
 						Jugador.move(+1, 0);
+					}
 				}
 				if (event.key.code == sf::Keyboard::D){
 					Jugador.move(+1, 0);
@@ -1635,11 +1747,36 @@ public:
 						if (i != -1){ vecMunicion.erase(vecMunicion.begin() + i); CANTIDADBALAS++; }
 						if (colisionPortal(Jugador)){
 							teletransportar(posPortales, Jugador);
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::PasarxPortal]);
+							SonidoJugador.play();
 						}
+						else{
+							if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::Pisadas]){
+								SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::Pisadas]);
+								SonidoJugador.play();
+							}
+							else{
+								if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+									SonidoJugador.play();
+								}
+							}
+						}						
 						continue;
 					}
 					else
+					{
+						if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::ChocaPared]){
+							SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::ChocaPared]);
+							SonidoJugador.play();
+						}
+						else{
+							if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
+								SonidoJugador.play();
+							}
+						}
+						
 						Jugador.move(-1, 0);
+					}
 				}
 				if (event.key.code == sf::Keyboard::Tab)
 				{
@@ -1653,6 +1790,19 @@ public:
 					ii salida = BuscarSalida();
 					sii Pilan = PilaHaciaSalida(salida);*/
 					pintarSolucion(CaminoSalidaDJ(posJugadorTI), vecrSol);
+					if (SonidoJugador.getBuffer() != &BsonidosJugador[SonidosJugador::UsarVisor]){
+						SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::UsarVisor]);
+						SonidoJugador.play();
+					}
+					else{
+						if (SonidoJugador.getStatus() != sf::Sound::Status::Playing)
+							SonidoJugador.play();
+						
+					}
+					
+						
+					
+					
 				}
 				if (event.key.code == sf::Keyboard::Space){
 					if (bala == nullptr && CANTIDADBALAS>0){
@@ -1660,27 +1810,39 @@ public:
 						bala = new CBala(direccionBala);
 						bala->setPosBala(Jugador.getGlobalBounds().left + (Jugador.getGlobalBounds().width / 2) / 2
 							, Jugador.getGlobalBounds().top + (Jugador.getGlobalBounds().height / 2) / 2);
+						SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::LanzarPkbl]);
+						SonidoJugador.play();
+
 					}
 				}
 				if (event.key.code == sf::Keyboard::Num1)
 				{
 					Jugador.setFillColor(sf::Color::Red);
 					color = 'R';
+					SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::CambiarColor]);
+					SonidoJugador.play();
+
 				}
 				if (event.key.code == sf::Keyboard::Num2)
 				{
 					color = 'V';
 					Jugador.setFillColor(sf::Color::Green);
+					SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::CambiarColor]);
+					SonidoJugador.play();
 				}
 				if (event.key.code == sf::Keyboard::Num3)
 				{
 					color = 'A';
 					Jugador.setFillColor(sf::Color::Blue);
+					SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::CambiarColor]);
+					SonidoJugador.play();
 				}
 				if (event.key.code == sf::Keyboard::Num4)
 				{
 					color = 'B';
 					Jugador.setFillColor(sf::Color::White);
+					SonidoJugador.setBuffer(BsonidosJugador[SonidosJugador::CambiarColor]);
+					SonidoJugador.play();
 				}
 			}
 			if (event.type == sf::Event::KeyReleased)
@@ -1694,6 +1856,11 @@ public:
 	{
 		sf::Clock clock;
 		sf::Time timeSinceLastUpdate = sf::Time::Zero;
+		if (!musicaLaberinto.openFromFile("sounds/Music- Battle_Music-Trainer.ogg"))
+			cout << endl << "No se pudo leer el archivo de musica!" << endl;
+		musicaLaberinto.setLoop(true);
+		musicaLaberinto.setVolume(25); //por defecto empieza con 100 (max)
+		musicaLaberinto.play();
 		while (mWindow->isOpen())
 		{
 			/*sf::Time elapsedTime = clock.restart();

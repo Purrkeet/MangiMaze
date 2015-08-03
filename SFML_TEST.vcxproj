@@ -22,6 +22,29 @@
     <ClInclude Include="juego.h" />
     <ClInclude Include="VecEnemigos.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="sounds\boom.wav" />
+    <Media Include="sounds\ruby_0005_menuInicial.wav" />
+    <Media Include="sounds\ruby_0006_pasandoSalida.wav" />
+    <Media Include="sounds\ruby_0007_chocandoPared.wav" />
+    <Media Include="sounds\ruby_0008_colisConEnemigo.wav" />
+    <Media Include="sounds\ruby_000A_transPortal.wav" />
+    <Media Include="sounds\ruby_0012_enemigoSaliendo.wav" />
+    <Media Include="sounds\ruby_0017_explosionPkblPared.wav" />
+    <Media Include="sounds\ruby_0020_menuOpcIncorrecta.wav" />
+    <Media Include="sounds\ruby_0022_lanzamientoPkBl.wav" />
+    <Media Include="sounds\ruby_003B_Visor.wav" />
+    <Media Include="sounds\ruby_004F_colisPkblEnemio.wav" />
+    <Media Include="sounds\ruby_005F_cogiendoItem.wav" />
+    <Media Include="sounds\ruby_006C_cambioColor.wav" />
+    <Media Include="sounds\ruby_006D_menuSelec.wav" />
+    <Media Include="sounds\ruby_006E_PausaJuegoContinua.wav" />
+    <Media Include="sounds\ruby_006F_PausaJuego.wav" />
+    <Media Include="sounds\ruby_0074_pisada.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sounds\Music- Battle_Music-Trainer.ogg" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7DB88D32-2A0A-4491-8AC5-2343F023DF12}</ProjectGuid>
     <RootNamespace>SFML_TEST</RootNamespace>

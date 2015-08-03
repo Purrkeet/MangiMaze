@@ -42,4 +42,65 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="sounds\boom.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_000A_transPortal.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_003B_Visor.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_004F_colisPkblEnemio.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0005_menuInicial.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_005F_cogiendoItem.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0006_pasandoSalida.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_006C_cambioColor.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_006D_menuSelec.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_006E_PausaJuegoContinua.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_006F_PausaJuego.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0007_chocandoPared.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0008_colisConEnemigo.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0012_enemigoSaliendo.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0017_explosionPkblPared.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0020_menuOpcIncorrecta.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0022_lanzamientoPkBl.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="sounds\ruby_0074_pisada.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sounds\Music- Battle_Music-Trainer.ogg">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
