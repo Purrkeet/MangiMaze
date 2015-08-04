@@ -4,12 +4,9 @@
 
 using namespace std;
 
-
-int main()
-{
+int main(){
 	srand(time(NULL));
 	juego Juego = juego();
 	Juego.run();
 	return 0;
-
 }
