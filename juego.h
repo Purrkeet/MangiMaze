@@ -25,7 +25,7 @@ using namespace sf;
 
 #define muro '#'
 #define noMuro 'O'
-#define offset 1
+#define offsetB 1
 #define offsetC 50
 #define anchoBloque 20
 **/
@@ -34,14 +34,14 @@ typedef vector<sf::SoundBuffer> vSBf;
 typedef vector<std::string> vStr;
 #define CantidadSonidosJugador 9
 class juego
-{	
+{
 
 private:
-	int filM, colM; //tamaño que incluye los bordes del laberinto 
+	int filM, colM; //tamaño que incluye los bordes del laberinto
 	int fil, col; //tamaño sin bordes
-		
+
 	// El tiempo Global desde que inicio el juego
-	float TiempoG;	
+	float TiempoG;
 	float conEnemigosT;
 	sf::RenderWindow *mWindow;
 	static const sf::Time	TimePerFrame;
@@ -71,7 +71,7 @@ private:
 		vSBf BsonidosJugador;
 		std::string sonJugador_nombres[CantidadSonidosJugador];
 		sf::Sound SonidoJugador;
-		
+
 
 	//El laberinto en Caracteres ASCII
 		char maze[MAXMATRIX][MAXMATRIX];
@@ -85,7 +85,7 @@ private:
 	vE Venemigos;
 
 	//Propiedades para saber hacia donde esta moviendose el personaje
-	//Deben de moverse a una clase llamada 'Jugador.h' 
+	//Deben de moverse a una clase llamada 'Jugador.h'
 		bool	mIsMovingUp;
 		bool	mIsMovingDown;
 		bool	mIsMovingRight;
@@ -104,8 +104,8 @@ private:
 		sf::CircleShape Jugador;
 		//Cuando el jugador activa el Visor
 		vector<sf::RectangleShape> vecrSol;
-		
-	
+
+
 	//Puntos de referencia para la bala? -Debería estar en Bala.h --Revisar: Steve
 	int ColiBalaX;
 	int ColiBalaY;
@@ -115,10 +115,10 @@ private:
 	int CANTIDADBALAS;
 	int NIVEL;
 	int PUNTAJE_ACUMULADO;
-	
+
 
 public:
-	juego() ://mWindow(sf::VideoMode(900, 700), "Mangimaze", sf::Style::Close), 
+	juego() ://mWindow(sf::VideoMode(900, 700), "Mangimaze", sf::Style::Close),
                     Jugador(8)
 		, iStuffMapa(), tStuffmapa(), mIsMovingUp(false)
 		, mIsMovingDown(false)
@@ -177,7 +177,7 @@ public:
 		vHeroAtras.push_back(sf::IntRect(1, 82, 17, 23));
 		vHeroAtras.push_back(sf::IntRect(19, 80, 17, 25));
 		vHeroAtras.push_back(sf::IntRect(37, 80, 17, 25));
-		
+
 		Jugador.setTextureRect(vHeroAdelante[0]);
 		Jugador.setOrigin(2 + Jugador.getGlobalBounds().width / 2, 2 + Jugador.getGlobalBounds().height / 2);
 		//Jugador.setRotation(180);
@@ -185,18 +185,18 @@ public:
 		bala= nullptr;
 		direccionBala = 0;
 		contador = 0;
-		
+
 		fil = 25, col = 25;
 		if (fil % 2 == 0)fil--;
 		if (col % 2 == 0)col--;
 		init();
-		
+
 		//tipo de mapa
 		mapaRandom = rand() % 7;
 		//Genera una pos aleatoria las columnas deben ser mayor a 1
 		//int posfI=rand()%(fil-1), poscI=rand()%(col-1);
 		//se marca aleatoriamente alguna pared de primera columna
-		int posfI = rand() % (fil)+offset, poscI = offset;
+		int posfI = rand() % (fil)+offsetB, poscI = offsetB;
 		//if(poscI%2!=0)poscI+=1;
 		if (posfI % 2 == 0)posfI += 1;
 		//llama a DFS
@@ -217,7 +217,7 @@ public:
                 //Musica como puntero
                 musicaLaberinto = new sf::Music();
 		//Sonidos del jugador
-		
+
 
 			string sonJugador_nombresTemp[CantidadSonidosJugador] = {"sounds/ruby_000A_transPortal.wav", "sounds/ruby_003B_Visor.wav",
 				"sounds/ruby_005F_cogiendoItem.wav", "sounds/ruby_0006_pasandoSalida.wav", "sounds/ruby_006C_cambioColor.wav"
@@ -232,7 +232,7 @@ public:
 			{
 				BsonidosJugador[i].loadFromFile(sonJugador_nombres[i]);
 			}
-		//--Fin sonidos del jugador	
+		//--Fin sonidos del jugador
 	}
 	~juego(){}
 
@@ -356,7 +356,7 @@ public:
 		bool hayPortalB = hayPortal(ii(nodo.second, nodo.first));
 		bool VieneDeOtroPortal = false;
 		if (hayPortalB){
-			int posFirst = matPadres[nodo.first][nodo.second] % colM; // +offset;
+			int posFirst = matPadres[nodo.first][nodo.second] % colM; // +offsetB;
 			int posSecond = matPadres[nodo.first][nodo.second] / colM;
 			VieneDeOtroPortal = hayPortal(ii(posSecond, posFirst)); //revisar si encuentra bien el portal
 		}
@@ -399,7 +399,7 @@ public:
 		memset(matPadres, -1, sizeof(matVisitados));
 	}
 	bool posValidaDJ(ii pos) { //puede ir uno mas abajo para llegar a marcar la salida
-		if (pos.first >col || pos.second >fil + 1 || pos.first<offset || pos.second<offset)
+		if (pos.first >col || pos.second >fil + 1 || pos.first<offsetB || pos.second<offsetB)
 			return false;
 		return true;
 	}
@@ -442,7 +442,7 @@ public:
 					matVisitados[posAct.first][posAct.second] + pesoAlNodo){
 
 					matVisitados[nodoSig.first][nodoSig.second] = matVisitados[posAct.first][posAct.second] + pesoAlNodo;
-					matPadres[nodoSig.first][nodoSig.second] = posAct.second * colM + posAct.first;// +offset; //crea un hash del padre
+					matPadres[nodoSig.first][nodoSig.second] = posAct.second * colM + posAct.first;// +offsetB; //crea un hash del padre
 					Cola.push(iii(matVisitados[nodoSig.first][nodoSig.second], nodoSig));
 				}
 
@@ -489,14 +489,14 @@ public:
 		return PilaHaciaSalidaDJColor(salida);
 
 	}
-	
+
 	bool hayPared(ii pos) {
 		if (maze[pos.first][pos.second] == muro)
 			return false;
 		return true;
 	}
 	bool posValida(ii pos) {
-		if (pos.first >fil || pos.second >col || pos.first<offset || pos.second<offset) {
+		if (pos.first >fil || pos.second >col || pos.first<offsetB || pos.second<offsetB) {
 			return false;
 		}
 		return true;
@@ -542,7 +542,7 @@ public:
 		int sz = Avisitar.size();
 		//cout <<endl<<sz<<endl;
 		//for(int a=0; a<4;++a){cout <<Avisitar[a]<<" ";}cout<<endl;
-		for (int i = offset; i<sz + offset; ++i) {
+		for (int i = offsetB; i<sz + offsetB; ++i) {
 			//saco la direccion y lo transformo en la posici�n siguiente
 			ii nodopasadizo;
 			ii sigNodo = NodoxDirec(Avisitar.back(), nodo, nodopasadizo);
@@ -563,8 +563,8 @@ public:
 		}
 	}
 	void init() {
-		filM = fil + 2 * offset;
-		colM = col + 2 * offset;
+		filM = fil + 2 * offsetB;
+		colM = col + 2 * offsetB;
 
 		for (int i = 0; i<filM; ++i) {
 			for (int j = 0; j<colM; ++j) {
@@ -581,7 +581,7 @@ public:
 		//la cantidadde huecos debe ser proporcional por cada 27 bloques es 3 huecos
 		int c_maxHuecos = (fil*col / 27) * 2;
 		while (c_huecos<c_maxHuecos) {
-			int i = rand() % fil + offset, j = rand() % col + offset;
+			int i = rand() % fil + offsetB, j = rand() % col + offsetB;
 			if (!hayPared(make_pair(i, j))) { // hay pared xd
 				//para que no haga cualquier hueco, solo donde haya una pared que divida dos caminos
 				if ((!hayPared(make_pair(i - 1, j)) && !hayPared(make_pair(i + 1, j)) && hayPared(make_pair(i, j - 1)) && hayPared(make_pair(i, j + 1)))
@@ -645,8 +645,8 @@ public:
 	}
 	bool cmpDistRelativaSupIzq(const ii &a, const ii &b){
 		//Compara Distancias Relativas a la esquina Superior Izquierda del Maze
-		//segun la rubrica, 
-		//la distancia primero hacia arriba y luego derecha 
+		//segun la rubrica,
+		//la distancia primero hacia arriba y luego derecha
 		//para cuando los portales tienen distancias manhattan iguales
 
 		if (a.first == b.first){ //cuando comparten la primera componente
@@ -657,7 +657,7 @@ public:
 
 	}
 	vector<char> ColorPortales;
-	vvi GPortales; //Grafo portales 
+	vvi GPortales; //Grafo portales
 
 	ii BuscaPortalMan(ii posPortalInicial, char ColorActual, vii portales) { //retorna en  X luego Y
 		int tPortal = 0;
@@ -708,7 +708,7 @@ public:
 		//si el vector de portales del color del jugador no existe, entonces el jugador muere!!
 		sz = portalesdelColor.size();
 		if (sz == 0){
-			//PARA HACER: JUGADOR MUERE 
+			//PARA HACER: JUGADOR MUERE
 			//como Flag se env�a una posici�n que no existe
 			return -1;
 		}
@@ -748,7 +748,7 @@ public:
 		while (portales < portal_max)
 		{
 			sf::CircleShape portal(10.f);
-			int i = rand() % fil + offset, j = rand() % col + offset;
+			int i = rand() % fil + offsetB, j = rand() % col + offsetB;
 			if (maze[i][j] == 'R' || maze[i][j] == 'A' || maze[i][j] == 'V'){
 				continue; //si un portal se crea encima
 			}
@@ -813,7 +813,7 @@ public:
 		int c_maxHuecos = 2;
 		sf::RectangleShape shape(sf::Vector2f(anchoBloque - 5, anchoBloque - 5));
 		while (c_huecos<c_maxHuecos) {
-			int i = rand() % fil + offset, j = rand() % col + offset;
+			int i = rand() % fil + offsetB, j = rand() % col + offsetB;
 			if (hayPared(make_pair(i, j))) { // hay pared xd
 				//para que no haga cualquier hueco, solo donde haya una pared que divida dos caminos
 				if ((!hayPared(make_pair(i - 1, j)) && !hayPared(make_pair(i + 1, j)) && hayPared(make_pair(i, j - 1)) && hayPared(make_pair(i, j + 1)))
@@ -834,7 +834,7 @@ public:
 		int entrada, salida;
 		while (Entrada_b) {
 			entrada = rand() % col; //fila 0
-			if (maze[offset][entrada] != muro) {
+			if (maze[offsetB][entrada] != muro) {
 				maze[0][entrada] = 'E';
 				Entrada_b = false;
 			}
@@ -972,7 +972,8 @@ public:
 		posJugadorTI.second /= anchoBloque;
 		ii posi = make_pair(posJugadorTI.second, posJugadorTI.first);
 		ii mangina = BuscaPortalMan(posi, color, pPosp);
-		personaje.setPosition(sf::Vector2f(offsetC + mangina.first * anchoBloque + anchoBloque / 2, offsetC + mangina.second * anchoBloque + anchoBloque / 2));
+		if(mangina.first != -1 && mangina.second != -1)
+			personaje.setPosition(sf::Vector2f(offsetC + mangina.first * anchoBloque + anchoBloque / 2, offsetC + mangina.second * anchoBloque + anchoBloque / 2));
 	}
 	void crearEntradasEnemigo()
 	{
@@ -1000,7 +1001,7 @@ public:
 				//}
 		/*		else
 					return;
-					
+
 			}
 
 		}*/
@@ -1014,7 +1015,7 @@ public:
 	void refrescarBusqueda(sf::Time tiempo)
 	{
 		conEnemigosT +=tiempo.asSeconds();
-		
+
 		if ((int)conEnemigosT % 10 == 0)
 		{
 			int ** auxMaze = new int  *[MAXMATRIX];
@@ -1034,7 +1035,7 @@ public:
 			for (int i = 0; i < enemigos.size(); i++)
 				enemigos[i].CaminoJugadorDJ(posJugadorTI, auxMaze, colM, posPortales, fil, col, GPortales,puertasEnemigos);
 		}
-	}	
+	}
 	void iniciarEnemys(sf::Time tiempo)
 	{
 		if (!puertasEnemigos.empty())
@@ -1388,7 +1389,7 @@ public:
 	void pintarNivel(sf::Text textInformativo){
 
 		//cambiar esta variable por la variable global que manejara los niveles
-	
+
 		//asigno un texto
 		sf::Text text = textInformativo;
 		text.setPosition(50, 10);
@@ -1400,7 +1401,7 @@ public:
 	void pintarCantidadBalas(sf::Text textInformativo)
 	{
 		//cambiar esta variable por la variable global que manejara la cantidad de balas
-		
+
 
 		//asigno un texto
 		sf::Text text = textInformativo;
@@ -1414,11 +1415,11 @@ public:
 	{
 		//debemos de declarar la hora como variable global y hacer una logica que vaya aumentando
 		//PD. no se que como hacerlo en smfl
-		
-		
+
+
 		//asigno un texto
 		sf::Text text = textInformativo;
-		text.setPosition(220, 10); 
+		text.setPosition(220, 10);
 		TiempoG += tiempo.asSeconds();
 		text.setString(" Tiempo :" + std::to_string((int)TiempoG));
 		this->mWindow->draw(text);
@@ -1502,7 +1503,7 @@ public:
 	void render(sf::Time tiempo)
 	{
 		mWindow->clear();
-		
+
 		for (int i = 0; i < vecr.size(); i++)
 			mWindow->draw(vecr[i]);
 		for (int k = 0; k < vecrSol.size(); k++)
@@ -1516,7 +1517,7 @@ public:
 		for (int k = 0; k < vecMunicion.size(); k++)
 			mWindow->draw(vecMunicion[k]);
 		pintarDetalles(tiempo);
-		
+
 		dibujarEnemigos();
 		dibujarPuertas();
 
@@ -1528,7 +1529,7 @@ public:
 			bala->moverBala(elapsedTime,PlayerSpeed);
 			bala->moverSpriteBala();
 			if (colisionaOptimizado(bala->getBalaShape())){
-				
+
 				if (direccionBala == 2){
 					if (ColiBalaY + 1 < fil){
 						maze[ColiBalaY + 1][ColiBalaX] = 'O';
@@ -1547,7 +1548,7 @@ public:
 						iniciarSpritesCabrilla();
 					}
 				}
-				
+
 				bala = nullptr;
 			}
 		}
@@ -1584,11 +1585,11 @@ public:
 					fil = 25, col = 25;
 					if (fil % 2 == 0)fil--;
 					if (col % 2 == 0)col--;
-					//llenar el laberinto con O 
+					//llenar el laberinto con O
 					init();
 					//Genera una pos aleatoria las columnas deben ser mayor a 1
 					//se marca aleatoriamente alguna pared de primera columna
-					int posfI = rand() % (fil)+offset, poscI = offset;
+					int posfI = rand() % (fil)+offsetB, poscI = offsetB;
 					//if(poscI%2!=0)poscI+=1;
 					if (posfI % 2 == 0)posfI += 1;
 					//llama a DFS
@@ -1635,8 +1636,8 @@ public:
 								if (SonidoJugador.getStatus() != sf::Sound::Status::Playing){
 									SonidoJugador.play();
 								}
-							}							
-							
+							}
+
 						}
 						continue;
 					}
@@ -1678,7 +1679,7 @@ public:
 									SonidoJugador.play();
 								}
 							}
-							
+
 						}
 						continue;
 					}
@@ -1693,7 +1694,7 @@ public:
 								SonidoJugador.play();
 							}
 						}
-						
+
 						Jugador.move(0, -1);
 					}
 				}
@@ -1721,7 +1722,7 @@ public:
 									SonidoJugador.play();
 								}
 							}
-							
+
 						}
 						continue;
 					}
@@ -1763,7 +1764,7 @@ public:
 									SonidoJugador.play();
 								}
 							}
-						}						
+						}
 						continue;
 					}
 					else
@@ -1777,7 +1778,7 @@ public:
 								SonidoJugador.play();
 							}
 						}
-						
+
 						Jugador.move(-1, 0);
 					}
 				}
@@ -1800,12 +1801,12 @@ public:
 					else{
 						if (SonidoJugador.getStatus() != sf::Sound::Status::Playing)
 							SonidoJugador.play();
-						
+
 					}
-					
-						
-					
-					
+
+
+
+
 				}
 				if (event.key.code == sf::Keyboard::Space){
 					if (bala == nullptr && CANTIDADBALAS>0){
@@ -1870,7 +1871,7 @@ public:
 			timeSinceLastUpdate += elapsedTime;
 			while (timeSinceLastUpdate > TimePerFrame)
 			{
-				timeSinceLastUpdate -= TimePerFrame;	
+				timeSinceLastUpdate -= TimePerFrame;
 			}*/
 			processEvents();
 			sf::Time tiempo = clock.restart();
