@@ -26,7 +26,7 @@ typedef vector<iii> viii;
 typedef priority_queue < iii, viii, greater<iii> > pq;
 #define muro '#'
 #define noMuro 'O'
-#define offset 1
+#define offsetB 1
 #define offsetC 50
 #define anchoBloque 20
 #define MAXMATRIX 77

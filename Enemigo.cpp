@@ -106,7 +106,7 @@ viii Enemigo::GeneraListaAdyDj(ii nodo, int colM, vii posPortales, vvi GPortales
 	return ady;
 }
 bool Enemigo::posValidaDJ(ii pos, int col, int fil){ //puede ir uno mas abajo para llegar a marcar la salida
-	if (pos.first >col || pos.second >fil + 1 || pos.first<offset || pos.second<offset)
+	if (pos.first >col || pos.second >fil + 1 || pos.first<offsetB || pos.second<offsetB )
 		return false;
 	return true;
 }
